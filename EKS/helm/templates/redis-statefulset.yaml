@@ -51,7 +51,7 @@ spec:
     - metadata:
         name: data
       spec:
-        accessModes: [ "ReadWriteOnce" ]
+        accessModes: [ "ReadWriteOnce" ] #readwriteonce mode other pods cannot access other pods volumes. there are different modes like ROX(readonlymany),RWX(readwritemany)
         {{ if not .Values.openshift }}
         storageClassName: gp2
         volumeMode: Filesystem
