@@ -25,8 +25,10 @@ spec:
         ports:
         - containerPort: 6379
         volumeMounts:
+        #data is the volume created outside the container but the data in /mnt/redis will be copied to volumenamed data outside the container
           - name: data
-            mountPath: /mnt/redis
+            #volume path inside the container
+            mountPath: /mnt/redis 
         resources:
           limits:
             cpu: 200m
@@ -47,7 +49,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
-  volumeClaimTemplates:
+  volumeClaimTemplates: #template for creating volume for each pod.
     - metadata:
         name: data
       spec:
